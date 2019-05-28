@@ -1,5 +1,5 @@
 package com.rlebron.carrental.dto
 
-class CarDto(val carPlate: String,
-             val make: String,
-             val model: String)
+class CarDto(val id: Int = 0,
+             val carPlate: String = "",
+             val registrationYear: String = "")
