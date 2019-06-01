@@ -7,17 +7,16 @@ import org.springframework.stereotype.Component
 @Component
 class CarMapperImpl : Mapper<CarEntity, CarDto> {
 
-    //fun CarEntity.toCarDto() = CarDto(idCar, carPlate = carPlate, registrationYear = registrationYear)
+    override fun entityToDto(ent: CarEntity): CarDto = CarDto(ent.idCar, ent.carPlate, ent.registrationYear)
+    override fun dtoToEntity(dto: CarDto): CarEntity = CarEntity(dto.id, dto.carPlate, dto.registrationYear)
 
-    override fun entityToDto(ent: CarEntity): CarDto{
-        /*val modelMapper = ModelMapper()
-        return modelMapper.map(ent, CarDto::class.java)*/
-        return CarDto(ent.idCar, ent.carPlate, ent.registrationYear)
+    override fun entityToDtoList(entList: List<CarEntity>): List<CarDto> {
+
+        val carsDto : MutableList<CarDto> = ArrayList()
+
+        entList.forEach { carsDto.add(CarDto(it.idCar, it.carPlate, it.registrationYear)) }
+
+        return carsDto
     }
 
-    override fun dtoToEntity(dto: CarDto): CarEntity{
-        /*val modelMapper = ModelMapper()
-        return modelMapper.map(dto, CarEntity::class.java)*/
-        return CarEntity(dto.id, dto.carPlate, dto.registrationYear)
-    }
 }

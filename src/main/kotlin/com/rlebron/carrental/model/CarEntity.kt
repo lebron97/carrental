@@ -11,9 +11,5 @@ data class CarEntity(@Id @GeneratedValue(strategy = GenerationType.AUTO) val idC
                      val make: String = "",
                      val model: String = "",
                      @ManyToMany(mappedBy = "cars", fetch = FetchType.LAZY) val rates: Set<RateEntity> = HashSet(),
-                     @OneToMany(mappedBy = "car") val rents: Set<RentEntity> = HashSet()){
-
-    //fun CarEntity.toCarDto() = CarDto(idCar, carPlate = carPlate, registrationYear = registrationYear)
-}
-
+                     @OneToMany(mappedBy = "car") val rents: Set<RentEntity> = HashSet())
 //Al inicializar cada campo del constructor obtengo un constructor vacío

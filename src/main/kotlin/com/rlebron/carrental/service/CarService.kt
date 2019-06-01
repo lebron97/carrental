@@ -1,37 +1,39 @@
 package com.rlebron.carrental.service
 
-import com.rlebron.carrental.dto.CarDto
 import com.rlebron.carrental.model.CarEntity
+import org.springframework.data.domain.Pageable
+import java.util.*
 
 
 interface CarService {
 
     /**
      *Method to get all the cars in the data base
+     * @param pageable
      *@return A list of all the cars
      */
-    fun findAll(): List<CarDto>
+    fun findAll(pageable: Pageable): List<CarEntity>
 
     /**
      * Method to get a car by id
      * @param car id
-     * @return car found or a empty car if it cannot be found
+     * @return optional of the car found
      */
-    fun findById(idCar: Int): CarDto
+    fun findById(idCar: Int): Optional<CarEntity>
 
     /**
      *Method to insert a new car
-     *@param car data transfer object
-     *@return the car inserted
+     *@param car entity
+     *@return the entity of the car inserted
      */
-    fun create(car: CarDto): CarDto
+    fun create(car: CarEntity): CarEntity
 
     /**
      * Method to update a car
-     * @param car data transfer object
+     * @param car entity
      * @return the car updated
      */
-    fun update(car: CarDto): CarDto
+    fun update(id: Int, car: CarEntity): Optional<CarEntity>
 
     /**
      * Method to delete a car by id
