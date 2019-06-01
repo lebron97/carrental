@@ -17,7 +17,7 @@ class CarServiceImpl @Autowired constructor(val carRepository : CarRepository) :
 
     override fun create(car: CarEntity): CarEntity = carRepository.save(car)
 
-    override fun update(id: Int, car: CarEntity): Optional<CarEntity> = findById(id).map {e -> carRepository.save(e) }
+    override fun update(id: Int, car: CarEntity): CarEntity = carRepository.save(car)
 
     override fun delete(idCar: Int) = carRepository.deleteById(idCar)
 }

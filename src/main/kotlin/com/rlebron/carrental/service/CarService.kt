@@ -33,7 +33,7 @@ interface CarService {
      * @param car entity
      * @return the car updated
      */
-    fun update(id: Int, car: CarEntity): Optional<CarEntity>
+    fun update(id: Int, car: CarEntity): CarEntity
 
     /**
      * Method to delete a car by id
