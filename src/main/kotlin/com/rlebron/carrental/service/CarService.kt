@@ -1,6 +1,7 @@
 package com.rlebron.carrental.service
 
 import com.rlebron.carrental.model.CarEntity
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import java.util.*
 
@@ -12,7 +13,7 @@ interface CarService {
      * @param pageable
      *@return A list of all the cars
      */
-    fun findAll(pageable: Pageable): List<CarEntity>
+    fun findAll(pageable: Pageable): Page<CarEntity>
 
     /**
      * Method to get a car by id

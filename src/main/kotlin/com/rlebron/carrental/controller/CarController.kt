@@ -7,6 +7,7 @@ import com.rlebron.carrental.service.CarService
 import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -23,7 +24,7 @@ class CarController @Autowired constructor(val carService: CarService, val mappe
     //devuelva Optionals de java en vez de ?.
 
     @GetMapping
-    fun getAll(): List<CarDto> = carService.findAll(PageRequest.of(0, 1)).let(mapper::entityToDtoList)
+    fun getAll(): Page<CarDto> = carService.findAll(PageRequest.of(0, 10)).let(mapper::entityToDtoList)
 
     @GetMapping("/{id}")
     fun getById(@PathVariable("id") idCar: Int): ResponseEntity<CarDto> =

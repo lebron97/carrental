@@ -1,5 +1,7 @@
 package com.rlebron.carrental.mapper
 
+import org.springframework.data.domain.Page
+
 interface Mapper<T,S> {
 
     //No he conseguido que me funcione el modelMapper en kotlin
@@ -16,7 +18,7 @@ interface Mapper<T,S> {
      * @param generic List
      * @return generic List
      */
-    fun entityToDtoList(entList : List<T>) : List<S>
+    fun entityToDtoList(entList : Page<T>) : Page<S>
 
     /**
      * Method for map dto to entity
