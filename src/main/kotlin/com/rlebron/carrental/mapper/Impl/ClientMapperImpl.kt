@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class ClientMapperImpl: Mapper<ClientEntity, ClientDto> {
 
-    override fun entityToDto(ent: ClientEntity): ClientDto = ClientDto(ent.idClient, ent.dni, ent.name)
+    override fun entityToDto(ent: ClientEntity?): ClientDto = ClientDto(ent?.idClient, ent?.dni, ent?.name)
 
     override fun entityToDtoList(entList: Page<ClientEntity>): Page<ClientDto>{
         val clientsDto : MutableList<ClientDto> = ArrayList()

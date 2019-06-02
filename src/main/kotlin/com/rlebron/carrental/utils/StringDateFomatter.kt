@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
 object StringDateFomatter {
-    fun stringToDate(date: String): LocalDate {
+    fun stringToDate(date: String?): LocalDate {
 
         var localDate = LocalDate.now()
         val patterns = arrayOf("dd-MM-yy", "dd/MM/yy", "dd-MM-yyyy", "dd/MM/yyyy", "MM-dd-yyyy", "MM/dd/yyyy", "yyyy-MM-dd", "yyyy/MM/dd",

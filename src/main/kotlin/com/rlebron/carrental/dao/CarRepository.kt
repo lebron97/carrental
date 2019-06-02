@@ -10,7 +10,7 @@ import java.util.*
 @Repository
 interface CarRepository : JpaRepository<CarEntity, Int>{
 
-    @Query(value = "SELECT u from User u WHERE u.city.name = ?1")
-    fun findCocheMasRentablePorRangoDeFechas(startDate: LocalDate, expirationDate: LocalDate): CarEntity
+    /*@Query(value = "SELECT u from User u WHERE u.city.name = ?1")
+    fun findCocheMasRentablePorRangoDeFechas(startDate: LocalDate, expirationDate: LocalDate): CarEntity*/
 
 }

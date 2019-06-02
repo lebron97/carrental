@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 @Component
 class RentMapperImpl @Autowired constructor(val carMapper: Mapper<CarEntity, CarDto>, val clientMapper: Mapper<ClientEntity, ClientDto>) : Mapper<RentEntity, RentDto> {
 
-    override fun entityToDto(ent: RentEntity): RentDto = RentDto(ent.idRent, ent.car.let { carMapper.entityToDto(it!!) }, ent.client.let { clientMapper.entityToDto(it!!) }, ent.rentPrice, ent.rentStartDate.toString(), ent.rentExpirationDate.toString())
+    override fun entityToDto(ent: RentEntity?): RentDto = RentDto(ent?.idRent, ent?.car.let { carMapper.entityToDto(it) }, ent?.client.let { clientMapper.entityToDto(it) }, ent?.rentPrice, ent?.rentStartDate.toString(), ent?.rentExpirationDate.toString())
 
     override fun entityToDtoList(entList: Page<RentEntity>): Page<RentDto> {
         val rentsDto: MutableList<RentDto> = ArrayList()

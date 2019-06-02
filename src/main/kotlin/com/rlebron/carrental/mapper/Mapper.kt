@@ -11,7 +11,7 @@ interface Mapper<T,S> {
      * @param generic
      * @return generic
      */
-    fun entityToDto(ent : T) : S
+    fun entityToDto(ent : T?) : S
 
     /**
      * Method for map a list of entities to dto

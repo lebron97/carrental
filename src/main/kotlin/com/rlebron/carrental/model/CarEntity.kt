@@ -5,10 +5,10 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "car")
-data class CarEntity(@Id @GeneratedValue(strategy = GenerationType.AUTO) val idCar: Int = 0,
-                     val carPlate: String = "",
-                     val registrationYear: String = "",
-                     val make: String = "",
-                     val model: String = "",
-                     @ManyToMany(mappedBy = "cars", fetch = FetchType.LAZY) val rates: Set<RateEntity> = HashSet(),
-                     @OneToMany(mappedBy = "car") val rents: Set<RentEntity> = HashSet())
+data class CarEntity(@Id @GeneratedValue(strategy = GenerationType.AUTO) val idCar: Int? = 0,
+                     val carPlate: String? = "",
+                     val registrationYear: String? = "",
+                     val make: String? = "",
+                     val model: String? = "",
+                     @ManyToMany(mappedBy = "cars", fetch = FetchType.LAZY) val rates: Set<RateEntity>? = HashSet(),
+                     @OneToMany(mappedBy = "car") val rents: Set<RentEntity>? = HashSet())
