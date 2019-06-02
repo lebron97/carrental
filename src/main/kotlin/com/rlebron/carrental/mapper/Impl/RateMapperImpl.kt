@@ -1,12 +1,10 @@
-package com.rlebron.carrental.mapper
+package com.rlebron.carrental.mapper.Impl
 
 import com.rlebron.carrental.dto.RateDto
+import com.rlebron.carrental.mapper.RateMapper
 import com.rlebron.carrental.model.RateEntity
 import com.rlebron.carrental.utils.StringDateFomatter
 import org.springframework.stereotype.Component
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.DateTimeParseException
 
 @Component
 class RateMapperImpl : RateMapper<RateEntity, RateDto> {

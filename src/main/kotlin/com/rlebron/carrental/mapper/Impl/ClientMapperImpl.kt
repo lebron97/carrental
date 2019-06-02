@@ -1,6 +1,7 @@
-package com.rlebron.carrental.mapper
+package com.rlebron.carrental.mapper.Impl
 
 import com.rlebron.carrental.dto.ClientDto
+import com.rlebron.carrental.mapper.Mapper
 import com.rlebron.carrental.model.ClientEntity
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl

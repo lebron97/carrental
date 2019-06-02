@@ -1,7 +1,8 @@
-package com.rlebron.carrental.service
+package com.rlebron.carrental.service.Impl
 
 import com.rlebron.carrental.dao.CarRepository
 import com.rlebron.carrental.model.CarEntity
+import com.rlebron.carrental.service.GenericService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -18,7 +19,7 @@ class CarServiceImpl @Autowired constructor(val carRepository : CarRepository) :
 
     override fun create(car: CarEntity): CarEntity = carRepository.save(car)
 
-    override fun update(id: Int, car: CarEntity): Optional<CarEntity> = findById(id).map{ carRepository.save(car)}
+    override fun update(id: Int, car: CarEntity): Optional<CarEntity> = findById(id).map{ carRepository.save(CarEntity(id, car.carPlate, car.registrationYear))}
 
     override fun delete(id: Int) = carRepository.deleteById(id)
 }

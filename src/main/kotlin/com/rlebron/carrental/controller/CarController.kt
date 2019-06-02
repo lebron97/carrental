@@ -44,11 +44,10 @@ class CarController @Autowired constructor(val carService: GenericService<CarEnt
     fun put(@PathVariable("id") id: Int, @RequestBody carDto: CarDto): ResponseEntity<CarDto> =
             Optional.ofNullable(carDto)
                     .map(mapper::dtoToEntity)
-                    .flatMap { e -> e.idCar = id;carService.update(id, e) }
+                    .flatMap { e -> carService.update(id, e) }
                     .map(mapper::entityToDto)
                     .map { e -> ResponseEntity(e, HttpStatus.OK) }
                     .orElse(ResponseEntity(HttpStatus.NOT_FOUND))
-            //carDto.let { mapper::dtoToEntity }.let { carService::update }.let { mapper::entityToDto }.let { ResponseEntity(it, HttpStatus.OK) } ?: ResponseEntity(HttpStatus.NOT_FOUND)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable("id") idCar: Int): ResponseEntity<Any> =

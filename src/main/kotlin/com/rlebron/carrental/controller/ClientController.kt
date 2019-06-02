@@ -40,7 +40,7 @@ class ClientController @Autowired constructor(val clientService: GenericService<
     fun put(@PathVariable("id") id: Int, @RequestBody clientDto: ClientDto): ResponseEntity<ClientDto> =
             Optional.ofNullable(clientDto)
                     .map(mapper::dtoToEntity)
-                    .flatMap { e -> e.idClient = id; clientService.update(id, e) }
+                    .flatMap { e -> clientService.update(id, e) }
                     .map(mapper::entityToDto)
                     .map { e -> ResponseEntity(e, HttpStatus.OK) }
                     .orElse(ResponseEntity(HttpStatus.NOT_FOUND))
