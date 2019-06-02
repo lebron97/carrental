@@ -10,7 +10,8 @@ import java.util.*
 @Repository
 interface CarRepository : JpaRepository<CarEntity, Int>{
 
-    /*@Query(value = "SELECT u from User u WHERE u.city.name = ?1")
-    fun findCocheMasRentablePorRangoDeFechas(startDate: LocalDate, expirationDate: LocalDate): CarEntity*/
+    @Query(nativeQuery = true, value = "SELECT all from car ce JOIN rent re ON ce.idCar = re.car.idCar WHERE re.rentStartDate BETWEEN ?1 AND ?2 OR re.rentExpirationDate BETWEEN ?1 AND ?2 " +
+            "AND re.precio = (SELECT MAX (precio / DATEDIFF(mre.rentStartDate,mre.rentExpirationDate))) FROM rent mre")
+    fun findCocheMasRentablePorRangoDeFechas(startDate: LocalDate, expirationDate: LocalDate): CarEntity
 
 }

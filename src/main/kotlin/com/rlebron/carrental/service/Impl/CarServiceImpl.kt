@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 import java.util.*
 
 
@@ -22,4 +23,6 @@ class CarServiceImpl @Autowired constructor(val carRepository : CarRepository) :
     override fun update(id: Int, car: CarEntity): Optional<CarEntity> = findById(id).map{ carRepository.save(CarEntity(id, car.carPlate, car.registrationYear))}
 
     override fun delete(id: Int) = carRepository.deleteById(id)
+
+    fun findCocheMasRentablePorRangoDeFechas(startDate: LocalDate, expirationDate: LocalDate): CarEntity = carRepository.findCocheMasRentablePorRangoDeFechas(startDate, expirationDate)
 }
