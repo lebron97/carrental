@@ -2,19 +2,30 @@ package com.rlebron.carrental.mapper
 
 import com.rlebron.carrental.dto.RateDto
 import com.rlebron.carrental.model.RateEntity
-import org.springframework.data.domain.Page
+import com.rlebron.carrental.utils.StringDateFomatter
+import org.springframework.stereotype.Component
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
-class RateMapperImpl: Mapper<RateEntity, RateDto> {
-    override fun entityToDto(ent: RateEntity): RateDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+@Component
+class RateMapperImpl : RateMapper<RateEntity, RateDto> {
 
-    override fun entityToDtoList(entList: Page<RateEntity>): Page<RateDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun entityToDto(ent: RateEntity): RateDto =
+            RateDto(
+                    ent.rateId,
+                    ent.ratePrice,
+                    ent.rateStartDate.toString(),
+                    ent.rateExpirationDate.toString()
+            )
 
     override fun dtoToEntity(dto: RateDto): RateEntity {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            return RateEntity(
+                    dto.id,
+                    dto.price,
+                    StringDateFomatter.stringToDate(dto.startDate),
+                    StringDateFomatter.stringToDate(dto.endDate))
+
     }
 
 }

@@ -10,15 +10,15 @@ import java.util.*
 
 
 @Service
-class CarServiceImpl @Autowired constructor(val carRepository : CarRepository) : CarService {
+class CarServiceImpl @Autowired constructor(val carRepository : CarRepository) : GenericService<CarEntity> {
 
     override fun findAll(pageable: Pageable): Page<CarEntity> = carRepository.findAll(pageable)
 
-    override fun findById(idCar: Int): Optional<CarEntity> = carRepository.findById(idCar)
+    override fun findById(id: Int): Optional<CarEntity> = carRepository.findById(id)
 
     override fun create(car: CarEntity): CarEntity = carRepository.save(car)
 
-    override fun update(id: Int, car: CarEntity): CarEntity = carRepository.save(car)
+    override fun update(id: Int, car: CarEntity): Optional<CarEntity> = findById(id).map{ carRepository.save(car)}
 
-    override fun delete(idCar: Int) = carRepository.deleteById(idCar)
+    override fun delete(id: Int) = carRepository.deleteById(id)
 }

@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "car")
-data class CarEntity(@Id @GeneratedValue(strategy = GenerationType.AUTO) val idCar: Int = 0,
+data class CarEntity(@Id @GeneratedValue(strategy = GenerationType.AUTO) var idCar: Int = 0,
                      val carPlate: String = "",
                      val registrationYear: String = "",
                      val make: String = "",

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component
 class CarMapperImpl : Mapper<CarEntity, CarDto> {
 
     override fun entityToDto(ent: CarEntity): CarDto = CarDto(ent.idCar, ent.carPlate, ent.registrationYear)
-    override fun dtoToEntity(dto: CarDto): CarEntity = CarEntity(dto.id, dto.carPlate, dto.registrationYear)
 
     override fun entityToDtoList(entList: Page<CarEntity>): Page<CarDto> {
 
@@ -21,4 +20,5 @@ class CarMapperImpl : Mapper<CarEntity, CarDto> {
         return carsDtoP
     }
 
+    override fun dtoToEntity(dto: CarDto): CarEntity = CarEntity(dto.id, dto.carPlate, dto.registrationYear)
 }

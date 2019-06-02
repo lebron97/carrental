@@ -3,7 +3,7 @@ package com.rlebron.carrental.controller
 import com.rlebron.carrental.dto.CarDto
 import com.rlebron.carrental.mapper.Mapper
 import com.rlebron.carrental.model.CarEntity
-import com.rlebron.carrental.service.CarService
+import com.rlebron.carrental.service.GenericService
 import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
@@ -18,7 +18,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/car")
-class CarController @Autowired constructor(val carService: CarService, val mapper: Mapper<CarEntity, CarDto>) {
+class CarController @Autowired constructor(val carService: GenericService<CarEntity>, val mapper: Mapper<CarEntity, CarDto>) {
 
     //Tengo dudas sobre let{}, let() y map. De cuando puedo usar cada uno. Y con el hecho de que el repositorio usado
     //devuelva Optionals de java en vez de ?.
@@ -44,7 +44,7 @@ class CarController @Autowired constructor(val carService: CarService, val mappe
     fun put(@PathVariable("id") id: Int, @RequestBody carDto: CarDto): ResponseEntity<CarDto> =
             Optional.ofNullable(carDto)
                     .map(mapper::dtoToEntity)
-                    .map { e -> carService.update(id, e) }
+                    .flatMap { e -> e.idCar = id;carService.update(id, e) }
                     .map(mapper::entityToDto)
                     .map { e -> ResponseEntity(e, HttpStatus.OK) }
                     .orElse(ResponseEntity(HttpStatus.NOT_FOUND))
